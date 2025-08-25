@@ -12,7 +12,7 @@ type Props = {
 
 export default function GoogleMapSelectPointsSingleLine({ onDistanceChange }: Props) {
     const { isLoaded } = useLoadScript({
-        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
+        googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY as string,
     });
 
     const [origin, setOrigin] = useState<google.maps.LatLngLiteral | null>(null);
