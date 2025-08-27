@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     return new Response(JSON.stringify({ error: "Missing parameters" }), { status: 400 });
   }
 
-  const key = process.env.GOOGLE_MAPS_API_KEY;
+  const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=${key}`;
 
   try {
