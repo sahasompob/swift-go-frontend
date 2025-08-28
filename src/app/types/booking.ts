@@ -18,6 +18,7 @@ export interface CreateBookingPayload {
 }
 
 export interface Booking {
+  finalPrice: number;
   id: number;
   refCode: string;
   status: 'PENDING' | 'CONFIRMED' | 'ONGOING' | 'COMPLETED' | 'CANCELLED';

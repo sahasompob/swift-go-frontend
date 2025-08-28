@@ -22,9 +22,9 @@ export default function Navigation() {
     path === '/' ? pathname === '/' : pathname.startsWith(path);
 
   const navItems = [
-    { name: 'Home', path: '/', icon: null },
-    { name: 'Book Ride', path: '/booking', icon: Car }, // ✅ ใส่ / นำหน้า
-    { name: 'Dashboard', path: '/dashboard', icon: User },
+    { name: 'หน้าแรก', path: '/', icon: null },
+    { name: 'จองรถ', path: '/booking', icon: Car }, // ✅ ใส่ / นำหน้า
+    { name: 'ประวัติการจอง', path: '/dashboard', icon: User },
   ];
 
   const handleSignOut = () => {
@@ -79,7 +79,7 @@ export default function Navigation() {
                   <Button variant="outline" size="sm" asChild>
                     <Link href="/login" className="cursor-pointer">
                       <LogIn className="h-4 w-4 mr-2" />
-                      Sign In
+                      ล็อกอิน
                     </Link>
                   </Button>
 
@@ -88,7 +88,7 @@ export default function Navigation() {
                     className="bg-gradient-accent shadow-elegant cursor-pointer"
                     asChild
                   >
-                    <Link href="/signup">Sign Up</Link>
+                    <Link href="/signup">สมัครสมาชิก</Link>
                   </Button>
                 </>
               ) : (
@@ -144,7 +144,7 @@ export default function Navigation() {
                     <Button variant="outline" className="w-full cursor-pointer" asChild>
                       <Link href="/login" onClick={() => setIsOpen(false)}>
                         <LogIn className="h-4 w-4 mr-2" />
-                        Sign In
+                        ล็อคอิน
                       </Link>
                     </Button>
 
@@ -153,7 +153,7 @@ export default function Navigation() {
                       asChild
                     >
                       <Link href="/signup" onClick={() => setIsOpen(false)}>
-                        Sign Up
+                        สมัครสมาชิก
                       </Link>
                     </Button>
                   </>
@@ -162,7 +162,7 @@ export default function Navigation() {
                     className="w-full bg-gradient-accent shadow-elegant cursor-pointer"
                     onClick={handleSignOut}
                   >
-                    Sign Out
+                    ออกจากระบบ
                   </Button>
                 )}
               </div>

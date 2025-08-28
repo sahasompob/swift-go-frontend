@@ -11,8 +11,10 @@ import { Button } from "../components/ui/Button";
 import GoogleMapDragDistance from "../components/ui/GoogleMapDragDistance";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { selectUser } from "../store/auth/authSlice";
-import { createBookingRequest, selectCreating } from "../store/booking/bookingSlice";
+import { createBookingRequest, selectCreateLoading, selectCreating } from "../store/booking/bookingSlice";
 import { toISO } from "../components/ui/lib/utils";
+import { LoadingOverlay } from "../components/ui/LoadingOverlay";
+import { useRouter } from "next/navigation";
 
 
 
@@ -66,7 +68,9 @@ const computeEstimatedTotal = (pricePerKm: number, distanceKm: number) =>
 export default function BookingPage() {
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
-  const creating = useAppSelector(selectCreating);
+  const loading = useAppSelector(selectCreateLoading);
+  const router = useRouter();
+
 
   const [bookingData, setBookingData] = useState<BookingData>({
     pickup: "",
@@ -169,7 +173,12 @@ export default function BookingPage() {
 
     dispatch(
       createBookingRequest(payload, {
-        
+        onSuccess(data) {
+          router.push("/dashboard");
+        },
+        onError(message) {
+          
+        },
       })
     );
   };
@@ -423,12 +432,8 @@ export default function BookingPage() {
           </div>
         </div>
 
-        {/* ข้อความแจ้งเตือน */}
-        <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <p className="text-sm text-blue-800 text-center">
-            <strong>หมายเหตุ:</strong> การจองต้องใช้การเชื่อมต่อกับ Supabase เพื่อบันทึกข้อมูลและการชำระเงิน
-          </p>
-        </div>
+        <LoadingOverlay show={loading} label="กำลังดึงรายการจอง…" />
+
       </div>
     </div>
   );
